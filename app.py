@@ -216,6 +216,10 @@ def download_file(filename):
     """Serve a file from the local UPLOAD_FOLDER."""
     return send_from_directory(UPLOAD_FOLDER, filename, as_attachment=True)
 
+@app.route("/healthz")
+def health_check():
+    return "OK", 200
+
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0", port=8080)
