@@ -1,0 +1,16 @@
+runtime: python39
+
+env_variables:
+  DB_USER: "se422project3"
+  DB_PASSWORD: "se422pass"
+  DB_NAME: "photogallery"
+  DB_CONNECTION_NAME: "se-422-452919:us-central1:se422project3"
+
+entrypoint: python app.py
+
+handlers:
+  - url: /media/.*
+    static_dir: media
+
+  - url: /.*
+    script: auto

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Photo Gallery</title>
+  <meta name="viewport" content="width=device-width, 
+      minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link href="{{ url_for('static', filename='plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+  <link href="{{ url_for('static', filename='plugins/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" />
+  <link href="{{ url_for('static', filename='plugins/themify/themify.css') }}" rel="stylesheet" type="text/css" />  
+  <link href="{{ url_for('static', filename='plugins/cubeportfolio/css/cubeportfolio.min.css') }}" rel="stylesheet" type="text/css" />
+  <link href="{{ url_for('static', filename='css/global.css') }}" rel="stylesheet" type="text/css" /> 
+  <script type="text/javascript" src="{{ url_for('static', filename='plugins/jquery.min.js') }}"></script>
+
+
+      <style>
+        /* CSS to organize the images */
+        .gallery-container {
+            padding: 20px;
+        }
+
+        .gallery-item {
+            background: #fff;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            max-width: 200px; /* Adjust size as needed */
+            height: 200px; /* Uniform height */
+            object-fit: cover; /* Ensure consistent cropping */
+            border-radius: 10px;
+        }
+
+        .gallery-item h4 {
+            margin: 10px 0 5px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .gallery-item span {
+            display: block;
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 10px;
+        }
+</style>
+</head>
+
+<body>
+      <div class="container gallery-container">
+        <center>
+            <h2>Photo Gallery</h2>
+            <br>
+            <a href="/home">Home</a> | <a href="/add">Add Photo</a> <br><br>
+
+            <!-- Search Bar -->
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <form method="get" action="/search">
+                        <input type="text" name="query" id="query" class="form-control" placeholder="Search photos">
+                    </form>
+                </div>
+            </div>
+        </center>
+
+        <br>
+
+        <!-- Photo Gallery Grid -->
+        <div class="row">
+            {% for p in photos %}
+            <div class="col-md-3 col-sm-6">
+                <div class="gallery-item">
+                    <img src="{{ url_for('serve_media', filename=p.URL.split('/')[-1]) }}" alt="Image">
+                    <h4><a href="/{{p.PhotoID}}">{{p.Title}}</a></h4>
+                    <span>{{ p.CreationTime }}</span>
+                    <a href="/download/{{p.URL.split('/')[-1]}}" class="btn btn-primary btn-sm">Download</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+  <script type="text/javascript" src="{{ url_for('static', filename='plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='plugins/cubeportfolio/js/jquery.cubeportfolio.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='scripts/app.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='scripts/portfolio/portfolio-4-col-grid.js') }}"></script>
+</body>
+</html>
