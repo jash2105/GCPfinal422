@@ -1,14 +1,14 @@
 output "app_endpoint" {
   description = "34.134.128.223"
-  value       = google_compute_instance.flask_vm.network_interface[0].access_config[0].nat_ip
+  value       = "34.134.128.223?"
 }
 
 output "database_connection_name" {
   description = "finalprojectdb"
-  value       = google_sql_database_instance.main.connection_name
+  value       = "steady-copilot-459615-f4:us-central1:finalprojectdb"
 }
 
 output "database_instance_ip" {
   description = "34.173.250.12"
-  value       = google_sql_database_instance.main.public_ip_address
+  value       = "34.173.250.12"
 }
