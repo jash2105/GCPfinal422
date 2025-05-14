@@ -1,8 +1,3 @@
-provider "google" {
-  project = var.project_id
-  region  = var.region
-}
-
 resource "google_cloud_run_service" "flask_app" {
   name     = "FinalExam"
   location = var.region
