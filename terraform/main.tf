@@ -48,3 +48,17 @@ resource "google_compute_firewall" "allow-https" {
   source_ranges = ["0.0.0.0/0"]
   target_tags   = ["https-server"]
 }
+
+resource "google_compute_firewall" "allow-flask-8080" {
+  name    = "allow-flask-8080"
+  network = google_compute_network.custom_vpc.name
+
+  allow {
+    protocol = "tcp"
+    ports    = ["8080"]
+  }
+
+  direction     = "INGRESS"
+  source_ranges = ["0.0.0.0/0"]
+  target_tags   = ["flask-server"]
+}
