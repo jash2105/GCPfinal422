@@ -19,7 +19,7 @@ resource "google_cloud_run_service" "flask_app" {
 
         env {
           name  = "DB_PASSWORD"
-          value = "value = "-:L(((\\ztye&(Vrv"
+          value = "-:L(((\\ztye&(Vrv"
         }
 
         env {
