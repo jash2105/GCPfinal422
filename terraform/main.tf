@@ -48,13 +48,3 @@ resource "google_compute_firewall" "allow-https" {
   source_ranges = ["0.0.0.0/0"]
   target_tags   = ["https-server"]
 }
-
-resource "google_sql_database_instance" "main" {
-  name             = "finalprojectdb"
-  database_version = "POSTGRES_13"
-  region           = "us-central1"
-
-  settings {
-    tier = "db-f1-micro"
-  }
-}
