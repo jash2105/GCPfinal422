@@ -58,3 +58,36 @@ resource "google_sql_database_instance" "main" {
     tier = "db-f1-micro"
   }
 }
+
+resource "google_compute_instance" "flask-vm" {
+  name         = "flask-vm"
+  machine_type = "e2-medium"
+  zone         = "us-central1-c"
+
+  boot_disk {
+    initialize_params {
+      image = "debian-cloud/debian-12"
+    }
+  }
+
+  network_interface {
+    network = "default"
+
+    access_config {
+      # Ephemeral public IP
+    }
+  }
+
+  metadata_startup_script = <<-EOF
+    #!/bin/bash
+    apt-get update
+    apt-get install -y python3 python3-pip git
+    pip3 install --upgrade pip
+    pip3 install flask gunicorn
+    cd /home
+    git clone https://github.com/T2703/se422finalproject.git
+    cd se422finalproject
+    pip3 install -r requirements.txt
+    gunicorn -w 4 -b 0.0.0.0:80 app:app
+  EOF
+}
