@@ -3,8 +3,8 @@ provider "google" {
   region  = var.region
 }
 
-resource "google_storage_bucket" "example" {
-  name     = "${var.project_id}-example-bucket"
+resource "google_storage_bucket" "gallerybucketflask" {
+  name     = "${var.project_id}-gallerybucketflask-bucket"
   location = var.region
   force_destroy = true
 }
@@ -49,3 +49,12 @@ resource "google_compute_firewall" "allow-https" {
   target_tags   = ["https-server"]
 }
 
+resource "google_sql_database_instance" "main" {
+  name             = "finalprojectdb"
+  database_version = "POSTGRES_13"
+  region           = "us-central1"
+
+  settings {
+    tier = "db-f1-micro"
+  }
+}
