@@ -50,10 +50,11 @@ DB_CONNECTION_NAME = os.getenv("DB_CONNECTION_NAME")
 # Function to establish connection with Google Cloud SQL
 def get_db_connection():
     return pymysql.connect(
-        unix_socket=f"/cloudsql/{DB_CONNECTION_NAME}",
+        host="34.173.250.12",
         user=DB_USER,
         password=DB_PASSWORD,
-        db=DB_NAME
+        db=DB_NAME,
+        port=3306
     )
 
 def allowed_file(filename):
