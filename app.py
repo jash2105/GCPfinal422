@@ -86,6 +86,8 @@ def login():
 
         cursor.execute("SELECT * FROM user WHERE username = %s", (username,))
         user = cursor.fetchone()
+        print(f"Entered: '{username}' / '{password}'")
+        print(f"DB returned: {user}")
         conn.close()
 
         if user and user[2] == password:
