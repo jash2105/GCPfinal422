@@ -100,7 +100,7 @@ def login():
             items = [{"PhotoID": item[0], "CreationTime": item[1], "Title": item[2], "Description": item[3], "Tags": item[4], "URL": item[5]} for item in results]
             return render_template('home.html', photos=items)
         else:
-            return render_template('home.html', error="Invalid username or password")
+            return render_template('index.html', error="Invalid username or password")
 
     else:
         return render_template('index.html')
