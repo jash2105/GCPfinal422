@@ -26,7 +26,7 @@ resource "google_service_networking_connection" "private_vpc_connection" {
 }
 
 resource "google_compute_firewall" "allow_http_https" {
-  name    = "allow-http-https-gcpfinal422"  # renamed to avoid conflict
+  name    = "allow-http-https-gcpfinal422"
   network = google_compute_network.vpc_network.name
 
   allow {
@@ -38,12 +38,24 @@ resource "google_compute_firewall" "allow_http_https" {
 }
 
 resource "google_compute_firewall" "allow_ssh" {
-  name    = "allow-ssh-gcpfinal422"  # renamed to avoid conflict
+  name    = "allow-ssh-gcpfinal422"
   network = google_compute_network.vpc_network.name
 
   allow {
     protocol = "tcp"
     ports    = ["22"]
+  }
+
+  source_ranges = ["0.0.0.0/0"]
+}
+
+resource "google_compute_firewall" "allow_app_8080" {
+  name    = "allow-app-8080-gcpfinal422"
+  network = google_compute_network.vpc_network.name
+
+  allow {
+    protocol = "tcp"
+    ports    = ["8080"]
   }
 
   source_ranges = ["0.0.0.0/0"]
