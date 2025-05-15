@@ -10,13 +10,14 @@ resource "google_compute_subnetwork" "subnet" {
   network       = google_compute_network.vpc_network.id
 }
 
+# Reserve a non-overlapping block for Google-managed services
 resource "google_compute_global_address" "private_ip_address" {
   name          = "google-managed-services-${var.region}"
   purpose       = "VPC_PEERING"
   address_type  = "INTERNAL"
-  prefix_length = 16
+  prefix_length = 24
   network       = google_compute_network.vpc_network.id
-  address       = "10.10.0.0"
+  address       = "10.200.0.0"
 }
 
 resource "google_service_networking_connection" "private_vpc_connection" {
