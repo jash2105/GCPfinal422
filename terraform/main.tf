@@ -26,7 +26,7 @@ resource "google_service_networking_connection" "private_vpc_connection" {
 }
 
 resource "google_compute_firewall" "allow_http_https" {
-  name    = "allow-http-https"
+  name    = "allow-http-https-gcpfinal422"  # renamed to avoid conflict
   network = google_compute_network.vpc_network.name
 
   allow {
@@ -38,7 +38,7 @@ resource "google_compute_firewall" "allow_http_https" {
 }
 
 resource "google_compute_firewall" "allow_ssh" {
-  name    = "allow-ssh"
+  name    = "allow-ssh-gcpfinal422"  # renamed to avoid conflict
   network = google_compute_network.vpc_network.name
 
   allow {
