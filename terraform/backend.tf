@@ -1,6 +1,6 @@
 terraform {
   backend "gcs" {
-    bucket  = "gallerybucket1"
-    prefix  = "terraform/state"
+    bucket = "tf-state-eastern-hawk"
+    prefix = "se422final"
   }
 }
